@@ -1676,14 +1676,14 @@
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
       },
-      "GradeBook/1.0.0": {
+      "Gradebook/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "compile": {
-          "bin/placeholder/GradeBook.dll": {}
+          "bin/placeholder/Gradebook.dll": {}
         },
         "runtime": {
-          "bin/placeholder/GradeBook.dll": {}
+          "bin/placeholder/Gradebook.dll": {}
         }
       }
     }
@@ -5860,15 +5860,15 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "GradeBook/1.0.0": {
+    "Gradebook/1.0.0": {
       "type": "project",
-      "path": "../../src/GradeBook/GradeBook.csproj",
-      "msbuildProject": "../../src/GradeBook/GradeBook.csproj"
+      "path": "../../src/GradeBook/Gradebook.csproj",
+      "msbuildProject": "../../src/GradeBook/Gradebook.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "GradeBook >= 1.0.0",
+      "Gradebook >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.0.1",
       "Microsoft.NETCore.App >= 2.2.0",
       "xunit >= 2.4.0",
@@ -5905,8 +5905,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Personal Projects\\Pluralsight\\GradeBook\\src\\GradeBook\\GradeBook.csproj": {
-              "projectPath": "C:\\Personal Projects\\Pluralsight\\GradeBook\\src\\GradeBook\\GradeBook.csproj"
+            "C:\\Personal Projects\\Pluralsight\\GradeBook\\src\\GradeBook\\Gradebook.csproj": {
+              "projectPath": "C:\\Personal Projects\\Pluralsight\\GradeBook\\src\\GradeBook\\Gradebook.csproj"
             }
           }
         }
