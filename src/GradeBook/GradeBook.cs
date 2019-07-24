@@ -6,12 +6,12 @@ namespace GradeBook
     public class GradeBook
     {
         private readonly List<double> _grades;
-        private readonly string _name;
+        public string Name;
         private GradeBookStatistic _stats;
 
         public GradeBook(string name)
         {
-            this._name = name;
+            Name = name;
             _stats = new GradeBookStatistic();
             _grades = new List<double>();
         }
@@ -30,7 +30,7 @@ namespace GradeBook
                 _stats.Low = Math.Min(grade, _stats.Low);
                 result += grade;
             }
-            _stats.Average = result/_grades.Count;
+            _stats.Average = result / _grades.Count;
             return _stats;
         }
 
