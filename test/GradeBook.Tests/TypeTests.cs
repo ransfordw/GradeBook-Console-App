@@ -9,6 +9,24 @@ namespace GradeBook.Tests
     public class TypeTests
     {
         [Fact]
+        public void ValueTypesAlsoCanPassByRef()
+        {
+            var x = GetInt();
+            SetInt(out x);
+            Assert.Equal(42, x);
+        }
+
+        private void SetInt(out int x)
+        {
+            x = 42;
+        }
+
+        private int GetInt()
+        {
+            return 3;
+        }
+
+        [Fact]
         public void TypeTests_GetGradeBook_ReturnsDifferentObjects()
         {
             // Arrange
@@ -24,6 +42,60 @@ namespace GradeBook.Tests
         }
 
         [Fact]
+        public void CanSetNameFromReference()
+        {
+            // Arrange
+            var book = GetGradeBook("Book 1");
+
+            // Act
+            SetName(book, "New Name");
+
+            // Assert
+            Assert.Equal("New Name", book.Name);
+        }
+
+        private void SetName(GradeBook book, string newName)
+        {
+            book.Name = newName;
+        }
+
+        [Fact]
+        public void CSharpCanPassByRef()
+        {
+            // Arrange
+            var book = GetGradeBook("Book 1");
+
+            // Act
+            GetBookAndSetName(ref book, "New Name");
+
+            // Assert
+            Assert.Equal("New Name", book.Name);
+        }
+
+        private void GetBookAndSetName(ref GradeBook book, string newName)
+        {
+            book = new GradeBook(newName);
+        }
+
+        [Fact]
+        public void CSharpIsPassByValue()
+        {
+            // Arrange
+            var book = GetGradeBook("Book 1");
+
+            // Act
+            GetBookAndSetName(book, "New Name");
+
+            // Assert
+            Assert.Equal("Book 1", book.Name);
+        }
+
+        private void GetBookAndSetName(GradeBook book, string newName)
+        {
+            book = new GradeBook(newName);
+        }
+
+        [Fact]
         public void TypeTests_TwoVarsCanReferenceSameObject_ReturnsSameObject()
         {
             // Arrange
@@ -34,7 +106,7 @@ namespace GradeBook.Tests
 
             // Assert
             Assert.Same(book, book2);
-            Assert.True(Object.ReferenceEquals(book,book2));
+            Assert.True(Object.ReferenceEquals(book, book2));
         }
 
         private GradeBook GetGradeBook(string bookName)
