@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace GradeBook
 {
-    public class Book
+    public class GradeBook
     {
         private readonly List<double> _grades;
         private readonly string _name;
         private GradeBookStatistic _stats;
 
-        public Book(string name)
+        public GradeBook(string name)
         {
             this._name = name;
             _stats = new GradeBookStatistic();
