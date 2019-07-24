@@ -7,15 +7,12 @@ namespace GradeBook
     {
         private readonly List<double> _grades;
         private readonly string _name;
-        private double _highGrade;
-        private double _lowGrade;
-        private double _avgGrade;
+        private GradeBookStatistic _stats;
+
         public Book(string name)
         {
             this._name = name;
-            _avgGrade = 0.0;
-            _lowGrade = double.MaxValue;
-            _highGrade = double.MinValue;
+            _stats = new GradeBookStatistic();
             _grades = new List<double>();
         }
 
@@ -24,29 +21,22 @@ namespace GradeBook
             _grades.Add(grade);
         }
 
-        public void ShowStatistics()
-        {
-            CalculateStatistics();
-            Console.WriteLine($"The average grade is {_avgGrade}.");
-            Console.WriteLine($"The lowest grade is {_highGrade}.");
-            Console.WriteLine($"The highest grade is {_lowGrade}.");
-        }
-
-        private void CalculateStatistics()
+        public GradeBookStatistic GetGradeBookStatistics()
         {
             var result = 0.0;
             foreach (var grade in _grades)
             {
-                _highGrade = Math.Max(grade, _highGrade);
-                _lowGrade = Math.Min(grade, _lowGrade);
+                _stats.High = Math.Max(grade, _stats.High);
+                _stats.Low = Math.Min(grade, _stats.Low);
                 result += grade;
             }
-            _avgGrade = result/_grades.Count;
+            _stats.Average = result/_grades.Count;
+            return _stats;
         }
 
         public double GetAverageGrade()
         {
-            return _avgGrade;
+            return _stats.Average;
         }
     }
 }
