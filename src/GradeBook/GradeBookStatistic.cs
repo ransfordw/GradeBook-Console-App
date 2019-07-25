@@ -5,6 +5,7 @@ namespace GradeBook
         public double Average { get; set; }  
         public double High { get; set; }
         public double Low { get; set; }
+        public char LetterGrade { get; set; }
 
         public GradeBookStatistic()
         {

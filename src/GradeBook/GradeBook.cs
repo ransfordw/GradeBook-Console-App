@@ -27,6 +27,7 @@ namespace GradeBook
         public GradeBookStatistic GetGradeBookStatistics()
         {
             var result = 0.0;
+
             foreach (var grade in _grades)
             {
                 _stats.High = Math.Max(grade, _stats.High);
@@ -34,6 +35,30 @@ namespace GradeBook
                 result += grade;
             }
             _stats.Average = result / _grades.Count;
+
+            switch (_stats.Average)
+            {
+                case var d when d > 90.0:
+                    _stats.LetterGrade = 'A';
+                    break;
+                case var d when d > 80.0:
+                    _stats.LetterGrade = 'B';
+                    break;
+                case var d when d > 70.0:
+                    _stats.LetterGrade = 'C';
+                    break;
+                case var d when d > 60.0:
+                    _stats.LetterGrade = 'D';
+                    break;
+                case var d when d > 50.0:
+                    _stats.LetterGrade = 'E';
+                    break;
+                default:
+                    _stats.LetterGrade = 'F';
+                    break;
+
+            }
+
             return _stats;
         }
 
