@@ -18,7 +18,10 @@ namespace GradeBook
 
         public void AddGrade(double grade)
         {
-            _grades.Add(grade);
+            if (grade >= 0 && grade <= 100)
+                _grades.Add(grade);
+                else
+                Console.WriteLine("The grade could not be added.");
         }
 
         public GradeBookStatistic GetGradeBookStatistics()
