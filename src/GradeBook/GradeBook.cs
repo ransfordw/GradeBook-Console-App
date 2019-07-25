@@ -20,7 +20,7 @@ namespace GradeBook
         {
             if (grade >= 0 && grade <= 100)
                 _grades.Add(grade);
-                else
+            else
                 Console.WriteLine("The grade could not be added.");
         }
 
