@@ -21,7 +21,7 @@ namespace GradeBook
             if (grade >= 0 && grade <= 100)
                 _grades.Add(grade);
             else
-                throw new Exception("Value was not between 0 and 100");
+                throw new ArgumentException($"Invalid {nameof(grade)}");
         }
 
         public GradeBookStatistic GetGradeBookStatistics()
