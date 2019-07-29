@@ -9,9 +9,19 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new GradeBook("Ransford's GradeBook");
-            book.AddGrade(89.1);
-            book.AddGrade(90.5);
-            book.AddGrade(77.5);
+            Console.WriteLine("Enter your grades: \n Enter \"q\" to exit.");
+            var input = "continue";
+            while (input.ToLower() != "q")
+            {
+                input = Console.ReadLine();
+                double grade;
+                var isValid = double.TryParse(input, out grade);
+                
+                if (isValid)
+                    book.AddGrade(grade);
+                else
+                    Console.WriteLine("Please enter a valid option.");
+            }
 
             var stats = book.GetGradeBookStatistics();
 
