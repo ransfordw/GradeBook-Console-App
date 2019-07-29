@@ -41,23 +41,23 @@ namespace GradeBook.Tests
             Assert.NotSame(book, book2);
         }
 
-        [Fact]
-        public void CanSetNameFromReference()
-        {
-            // Arrange
-            var book = GetGradeBook("Book 1");
+        // [Fact]
+        // public void CanSetNameFromReference()
+        // {
+        //     // Arrange
+        //     var book = GetGradeBook("Book 1");
 
-            // Act
-            SetName(book, "New Name");
+        //     // Act
+        //     SetName(book, "New Name");
 
-            // Assert
-            Assert.Equal("New Name", book.Name);
-        }
+        //     // Assert
+        //     Assert.Equal("New Name", book.Name);
+        // }
 
-        private void SetName(GradeBook book, string newName)
-        {
-            book.Name = newName;
-        }
+        // private void SetName(GradeBook book, string newName)
+        // {
+        //     book.Name = newName;
+        // }
 
         [Fact]
         public void CSharpCanPassByRef()

@@ -6,7 +6,7 @@ namespace GradeBook
     public class GradeBook
     {
         private readonly List<double> _grades;
-        public string Name;
+        public string Name { get; private set; }
         private GradeBookStatistic _stats;
 
         public GradeBook(string name)
