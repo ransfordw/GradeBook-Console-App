@@ -9,18 +9,34 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new GradeBook("Ransford's GradeBook");
-            Console.WriteLine("Enter your grades: \n Enter \"q\" to exit.");
-            var input = "continue";
-            while (input.ToLower() != "q")
+            while (true)
             {
-                input = Console.ReadLine();
-                double grade;
-                var isValid = double.TryParse(input, out grade);
-                
-                if (isValid)
+                Console.WriteLine("Enter your grades: \n Enter \"q\" to exit.");
+                var input = Console.ReadLine();
+
+                if (input.ToLower() == "q")
+                {
+                    break;
+                }
+
+                try
+                {
+
+                    var grade = double.Parse(input);
                     book.AddGrade(grade);
-                else
-                    Console.WriteLine("Please enter a valid option.");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    Console.WriteLine("*Happens regardless of exceptions or successes.*");
+                }
             }
 
             var stats = book.GetGradeBookStatistics();
