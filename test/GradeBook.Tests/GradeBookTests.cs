@@ -44,9 +44,9 @@ namespace GradeBook.Tests
         {
             var book = new GradeBook("test");
 
-            Exception ex = Assert.Throws<Exception>(() => book.AddGrade(130.0));
+            ArgumentException ex = Assert.Throws<ArgumentException>(() => book.AddGrade(130.0));
 
-            Assert.Equal("Value was not between 0 and 100",ex.Message);
+            Assert.Equal("Invalid grade",ex.Message);
         }
     }
 }

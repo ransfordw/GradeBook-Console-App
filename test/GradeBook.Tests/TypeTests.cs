@@ -6,8 +6,37 @@ namespace GradeBook.Tests
     // Run tests by changing into the directory for the test project
     // In the cli type "dotnet test" 
     // If a sln exists, make that the directory
+
+    // Delegates describe what a method will look like.
+    // Defines a variable that can point to and invoke methods
+    public delegate string WriteLogDelegate(string logMessage);
+
     public class TypeTests
     {
+        int count = 0;
+        [Fact]
+        public void WriteLogDelegateCanPointToMethod()
+        {
+            WriteLogDelegate logDelegate;
+
+            logDelegate = ReturnMessage;
+            logDelegate += ReturnMessage;
+            logDelegate += ReturnMessageToLower;
+            var result = logDelegate("Hello");
+
+            Assert.Equal(3,count);
+        }
+        private string ReturnMessageToLower(string message)
+        {
+            count++;
+            return message.ToLower();
+        }
+        private string ReturnMessage(string message)
+        {
+            count++;
+            return message;
+        }
+
         [Fact]
         public void ValueTypesAlsoCanPassByRef()
         {
@@ -113,5 +142,7 @@ namespace GradeBook.Tests
         {
             return new GradeBook(bookName);
         }
+
+
     }
 }
