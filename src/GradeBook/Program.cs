@@ -9,6 +9,8 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new GradeBook("Ransford's GradeBook");
+            book.GradeAdded += OnGradeAdded;
+
             while (true)
             {
                 Console.WriteLine("Enter your grades: \n Enter \"q\" to exit.");
@@ -21,7 +23,6 @@ namespace GradeBook
 
                 try
                 {
-
                     var grade = double.Parse(input);
                     book.AddGrade(grade);
                 }
@@ -35,7 +36,7 @@ namespace GradeBook
                 }
                 finally
                 {
-                    Console.WriteLine("*Happens regardless of exceptions or successes.*");
+                    Console.WriteLine("*This happens regardless of exceptions or successes.*");
                 }
             }
 
@@ -45,6 +46,11 @@ namespace GradeBook
             Console.WriteLine($"The lowest grade is {stats.Low}.");
             Console.WriteLine($"The highest grade is {stats.High}.");
             Console.WriteLine($"The letter grade is {stats.LetterGrade}.");
+        }
+
+        static void OnGradeAdded(object sender, EventArgs args)
+        {
+            Console.WriteLine("A grade was successfully added.");
         }
     }
 }
