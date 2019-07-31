@@ -5,39 +5,6 @@ namespace GradeBook
 {
     public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
-    public class NamedObject
-    {
-        public NamedObject(string name)
-        {
-            Name = name;
-        }
-        public string Name { get; set; }
-    }
-
-    public abstract class Book : NamedObject, IBook
-    {
-        public Book(string name) : base(name)
-        {
-        }
-
-        public virtual event GradeAddedDelegate GradeAdded;
-
-        public abstract void AddGrade(double grade);
-
-        public virtual GradeBookStatistic GetGradeBookStatistics()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public interface IBook
-    {
-        void AddGrade(double grade);
-        GradeBookStatistic GetGradeBookStatistics();
-        string Name { get; }
-        event GradeAddedDelegate GradeAdded;
-    }
-
     public class InMemoryGradeBook : Book, IBook
     {
         public override event GradeAddedDelegate GradeAdded;
@@ -66,7 +33,7 @@ namespace GradeBook
                 throw new ArgumentException($"Invalid {nameof(grade)}");
         }
 
-        public GradeBookStatistic GetGradeBookStatistics()
+        public override GradeBookStatistic GetGradeBookStatistics()
         {
             var result = 0.0;
 
