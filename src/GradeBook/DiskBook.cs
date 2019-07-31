@@ -15,7 +15,8 @@ namespace GradeBook
             using (var writer = File.AppendText($"{Name}.txt"))
             {
                 writer.WriteLine(grade);
-                if(GradeAdded != null){
+                if (GradeAdded != null)
+                {
                     GradeAdded(this, new EventArgs());
                 }
             }
@@ -23,7 +24,13 @@ namespace GradeBook
 
         public override GradeBookStatistic GetGradeBookStatistics()
         {
-            throw new System.NotImplementedException();
+            var stats = new GradeBookStatistic();
+            using (var reader = File.OpenText($"{Name}.txt"))
+            {
+                while(!reader.EndOfStream)
+                stats.Add(double.Parse(reader.ReadLine()));
+            }
+            return stats;
         }
     }
 }
