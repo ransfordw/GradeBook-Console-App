@@ -12,7 +12,7 @@ namespace GradeBook.Tests
         public void GradeBook_GetGradeBookStatistics_CalculatesStatsFromGradeBookList()
         {
             // Arrange
-            GradeBook book = new GradeBook("");
+            InMemoryGradeBook book = new InMemoryGradeBook("");
             book.AddGrade(89.1);
             book.AddGrade(90.5);
             book.AddGrade(77.3);
@@ -30,7 +30,7 @@ namespace GradeBook.Tests
         [Fact]
         public void GradeBook_AddGrade_AddsGradeToGradesList()
         {
-            var book = new GradeBook("test");
+            var book = new InMemoryGradeBook("test");
             book.AddGrade(30.0);
 
             var expected = 30.0;
@@ -42,7 +42,7 @@ namespace GradeBook.Tests
         [Fact]
         public void GradeBook_AddGrade_ThrowsErrorIfValueNotBetween0And100()
         {
-            var book = new GradeBook("test");
+            var book = new InMemoryGradeBook("test");
 
             ArgumentException ex = Assert.Throws<ArgumentException>(() => book.AddGrade(130.0));
 

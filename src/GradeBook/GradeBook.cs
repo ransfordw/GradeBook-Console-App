@@ -5,22 +5,53 @@ namespace GradeBook
 {
     public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
-
-    public class GradeBook
+    public class NamedObject
     {
-        public event GradeAddedDelegate GradeAdded;
+        public NamedObject(string name)
+        {
+            Name = name;
+        }
+        public string Name { get; set; }
+    }
+
+    public abstract class Book : NamedObject, IBook
+    {
+        public Book(string name) : base(name)
+        {
+        }
+
+        public virtual event GradeAddedDelegate GradeAdded;
+
+        public abstract void AddGrade(double grade);
+
+        public virtual GradeBookStatistic GetGradeBookStatistics()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public interface IBook
+    {
+        void AddGrade(double grade);
+        GradeBookStatistic GetGradeBookStatistics();
+        string Name { get; }
+        event GradeAddedDelegate GradeAdded;
+    }
+
+    public class InMemoryGradeBook : Book, IBook
+    {
+        public override event GradeAddedDelegate GradeAdded;
         private readonly List<double> _grades;
-        public string Name { get; private set; }
         private GradeBookStatistic _stats;
 
-        public GradeBook(string name)
+        public InMemoryGradeBook(string name) : base(name)
         {
             Name = name;
             _stats = new GradeBookStatistic();
             _grades = new List<double>();
         }
 
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             if (grade >= 0 && grade <= 100)
             {

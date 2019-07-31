@@ -5,21 +5,29 @@ namespace GradeBook
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-            var book = new GradeBook("Ransford's GradeBook");
+            var book = new InMemoryGradeBook("Ransford's GradeBook");
             book.GradeAdded += OnGradeAdded;
+            EnterGrades(book);
 
+            var stats = book.GetGradeBookStatistics();
+
+            Console.WriteLine($"The average grade is {stats.Average:N1}.");
+            Console.WriteLine($"The lowest grade is {stats.Low}.");
+            Console.WriteLine($"The highest grade is {stats.High}.");
+            Console.WriteLine($"The letter grade is {stats.LetterGrade}.");
+        }
+
+        private static void EnterGrades(IBook book)
+        {
             while (true)
             {
                 Console.WriteLine("Enter your grades: \n Enter \"q\" to exit.");
                 var input = Console.ReadLine();
 
                 if (input.ToLower() == "q")
-                {
                     break;
-                }
 
                 try
                 {
@@ -39,13 +47,6 @@ namespace GradeBook
                     Console.WriteLine("*This happens regardless of exceptions or successes.*");
                 }
             }
-
-            var stats = book.GetGradeBookStatistics();
-
-            Console.WriteLine($"The average grade is {stats.Average:N1}.");
-            Console.WriteLine($"The lowest grade is {stats.Low}.");
-            Console.WriteLine($"The highest grade is {stats.High}.");
-            Console.WriteLine($"The letter grade is {stats.LetterGrade}.");
         }
 
         static void OnGradeAdded(object sender, EventArgs args)
