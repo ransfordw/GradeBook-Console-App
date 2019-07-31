@@ -7,12 +7,13 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var book = new InMemoryGradeBook("Ransford's GradeBook");
+            IBook book = new DiskBook("Ransford's GradeBook");
             book.GradeAdded += OnGradeAdded;
             EnterGrades(book);
 
             var stats = book.GetGradeBookStatistics();
 
+            Console.WriteLine($"Details for book named: {book.Name}");
             Console.WriteLine($"The average grade is {stats.Average:N1}.");
             Console.WriteLine($"The lowest grade is {stats.Low}.");
             Console.WriteLine($"The highest grade is {stats.High}.");
@@ -44,7 +45,7 @@ namespace GradeBook
                 }
                 finally
                 {
-                    Console.WriteLine("*This happens regardless of exceptions or successes.*");
+                    Console.WriteLine("== End of add grade statement ==");
                 }
             }
         }
