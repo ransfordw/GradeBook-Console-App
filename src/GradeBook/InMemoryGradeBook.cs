@@ -22,10 +22,7 @@ namespace GradeBook
             {
                 _grades.Add(grade);
                 if (GradeAdded != null)
-                {
                     GradeAdded(this, new EventArgs());
-                }
-
             }
             else
                 throw new ArgumentException($"Invalid {nameof(grade)}");
